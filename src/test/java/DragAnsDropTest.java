@@ -20,9 +20,12 @@ public class DragAnsDropTest {
         $("#column-a").shouldHave(text("A"));
         $("#column-b").shouldHave(text("B"));
 
-        $("#column-a").dragAndDrop(DragAndDropOptions.to("#column-b"));
-
+        actions().dragAndDrop($("#column-a"),$("#column-b")).perform();
         $("#column-a").shouldHave(text("B"));
         $("#column-b").shouldHave(text("A"));
+
+        $("#column-a").dragAndDrop(DragAndDropOptions.to("#column-b"));
+        $("#column-a").shouldHave(text("A"));
+        $("#column-b").shouldHave(text("B"));
     }
 }
