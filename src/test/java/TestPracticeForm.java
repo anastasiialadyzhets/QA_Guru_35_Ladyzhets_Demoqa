@@ -8,12 +8,14 @@ import static com.codeborne.selenide.Selenide.*;
 
 public class TestPracticeForm {
     @BeforeAll
-    static void BeforeAll(){
+    static void beforeAll(){
         Configuration.pageLoadStrategy= "eager";
+        Configuration.baseUrl="https://demoqa.com";
+        Configuration.browserSize="1920x1080";
     }
     @Test
     void successfulSearchTest() {
-        open("https://demoqa.com/automation-practice-form/");
+        open("/automation-practice-form");
         $("#firstName").setValue("AnasTasiiA");
         $("#lastName").setValue("LadyZhets");
         $("#userEmail").setValue("myteatemail@qwert.com");
