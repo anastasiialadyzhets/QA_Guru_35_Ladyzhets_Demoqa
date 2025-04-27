@@ -71,6 +71,7 @@ public class RegistrationPageDemoQATest extends RegistrationPageDemoQA {
                 .checkGender("Female")
                 .checkPhone("1234567890")
                 .checkEmail("")
+                .checkDate("")
                 .checkSubjects("")
                 .checkHobbies("")
                 .checkUploadedFile("")
