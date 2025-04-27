@@ -8,7 +8,7 @@ import static com.codeborne.selenide.Selenide.*;
 
 public class TestPracticeForm {
     @BeforeAll
-    static void beforeAll(){
+    static void setupConfiguration(){
         Configuration.pageLoadStrategy= "eager";
         Configuration.baseUrl="https://demoqa.com";
         Configuration.browserSize="1920x1080";
