@@ -4,6 +4,7 @@ import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import pages.*;
+import pages.components.SubmitRegistrationTableComponent;
 
 public class RegistrationPageDemoQATest extends RegistrationPageDemoQA {
     @BeforeAll
@@ -15,7 +16,7 @@ public class RegistrationPageDemoQATest extends RegistrationPageDemoQA {
     @Test
     void successfulSearchTestAllFields() {
         RegistrationPageDemoQA registrationPage = new RegistrationPageDemoQA();
-        SubmitRegistrationFormDemoQA submitPage = new SubmitRegistrationFormDemoQA();
+        SubmitRegistrationTableComponent submitPage = new SubmitRegistrationTableComponent();
 
         registrationPage.openPage("/automation-practice-form")
                 .setFirstName("AnasTasiiA")
@@ -41,22 +42,22 @@ public class RegistrationPageDemoQATest extends RegistrationPageDemoQA {
                 .submitRegistration();
 
         submitPage.checkHeader("Thanks for submitting the form")
-                .checkName("AnasTasiiA LadyZhets")
-                .checkEmail("myteatemail@qwert.com")
-                .checkGender("Female")
-                .checkPhone("1234567890")
-                .checkDate("13 February,2000")
-                .checkSubjects("English, Social Studies, Computer Science")
-                .checkHobbies("Sports, Reading")
-                .checkUploadedFile("HaroldPain.png")
-                .checkAddress("stree Rasmus 123 building 10")
-                .checkLocation("Uttar Pradesh Lucknow");
+                .checkTableResult("Student Name","AnasTasiiA LadyZhets")
+                .checkTableResult("Student Email","myteatemail@qwert.com")
+                .checkTableResult("Gender","Female")
+                .checkTableResult("Mobile","1234567890")
+                .checkTableResult("Date of Birth","13 February,2000")
+                .checkTableResult("Subjects","English, Social Studies, Computer Science")
+                .checkTableResult("Hobbies","Sports, Reading")
+                .checkTableResult("Picture","HaroldPain.png")
+                .checkTableResult("Address","stree Rasmus 123 building 10")
+                .checkTableResult("State and City","Uttar Pradesh Lucknow");
     }
 
     @Test
     void successfulSearchTestRequiredFieldsOnly() {
         RegistrationPageDemoQA registrationPage = new RegistrationPageDemoQA();
-        SubmitRegistrationFormDemoQA submitPage = new SubmitRegistrationFormDemoQA();
+        SubmitRegistrationTableComponent submitPage = new SubmitRegistrationTableComponent();
 
         registrationPage.openPage("/automation-practice-form")
                 .setFirstName("AnasTasiiA")
@@ -67,22 +68,22 @@ public class RegistrationPageDemoQATest extends RegistrationPageDemoQA {
                 .submitRegistration();
 
         submitPage.checkHeader("Thanks for submitting the form")
-                .checkName("AnasTasiiA LadyZhets")
-                .checkGender("Female")
-                .checkPhone("1234567890")
-                .checkEmail("")
-                .checkDate("")
-                .checkSubjects("")
-                .checkHobbies("")
-                .checkUploadedFile("")
-                .checkAddress("")
-                .checkLocation("");
+                .checkTableResult("Student Name","AnasTasiiA LadyZhets")
+                .checkTableResult("Gender","Female")
+                .checkTableResult("Mobile","1234567890")
+                .checkTableResult("Student Email","")
+                .checkTableResult("Date of Birth","")
+                .checkTableResult("Subjects","")
+                .checkTableResult("Hobbies","")
+                .checkTableResult("Picture","")
+                .checkTableResult("Address","")
+                .checkTableResult("State and City","");
     }
 
     @Test
     void unsuccessfulSearchRequiredFieldsEmpty() {
         RegistrationPageDemoQA registrationPage = new RegistrationPageDemoQA();
-        SubmitRegistrationFormDemoQA submitPage = new SubmitRegistrationFormDemoQA();
+        SubmitRegistrationTableComponent submitPage = new SubmitRegistrationTableComponent();
 
         registrationPage.openPage("/automation-practice-form")
                 .setUserEmail("myteatemail@qwert.com")
