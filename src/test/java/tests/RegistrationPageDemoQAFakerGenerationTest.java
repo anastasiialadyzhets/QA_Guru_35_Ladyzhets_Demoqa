@@ -60,7 +60,6 @@ public class RegistrationPageDemoQAFakerGenerationTest {
                 .setLastName(testData.lastName)
                 .setGender(testData.userGender)
                 .setPhone(testData.userPhone)
-
                 .submitRegistration();
 
         submitPage.checkHeader("Thanks for submitting the form")
@@ -78,26 +77,19 @@ public class RegistrationPageDemoQAFakerGenerationTest {
 
     @Test
     void unsuccessfulSearchRequiredFieldsEmpty() {
+        TestDataRegistrationPage testData = new TestDataRegistrationPage();
         RegistrationPageDemoQA registrationPage = new RegistrationPageDemoQA();
         SubmitRegistrationTableComponent submitPage = new SubmitRegistrationTableComponent();
 
         registrationPage.openPage("/automation-practice-form")
-                .setUserEmail("myteatemail@qwert.com")
-                .setDate("2000","February","13")
-
-                .addSubject("English")
-                .addSubject("Social Studies")
-                .addSubject("Computer Science")
-
-                .addHobbies("Sports")
-                .addHobbies("Reading")
-
-                .uploadFile("HaroldPain.png")
-
-                .setCurrentAddress("stree Rasmus 123 building 10")
-                .setState("Uttar Pradesh")
-                .setCity("Lucknow")
-
+                .setUserEmail(testData.userEmail)
+                .setDate(testData.dateBirth[0],testData.dateBirth[1],testData.dateBirth[2])
+                .addSubject(testData.subjects)
+                .addHobbies(testData.hobbies)
+                .uploadFile(testData.attachedfile)
+                .setCurrentAddress(testData.streetAddress)
+                .setState(testData.userState)
+                .setCity(testData.userCity)
                 .submitRegistration();
 
         submitPage.checkHeader("");
