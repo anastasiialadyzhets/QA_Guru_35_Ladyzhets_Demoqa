@@ -7,7 +7,7 @@ import pages.RegistrationPageDemoQA;
 import pages.components.SubmitRegistrationTableComponent;
 import utils.TestDataRegistrationPage;
 
-public class RegistrationPageDemoQATestFakerGeneration extends RegistrationPageDemoQA {
+public class RegistrationPageDemoQAFakerGenerationTest {
     @BeforeAll
     static void setupConfiguration(){
         Configuration.pageLoadStrategy= "eager";
