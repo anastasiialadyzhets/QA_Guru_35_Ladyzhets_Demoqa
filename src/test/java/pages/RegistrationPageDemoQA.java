@@ -1,5 +1,6 @@
 package pages;
 
+import org.openqa.selenium.interactions.Actions;
 import pages.components.*;
 
 import static com.codeborne.selenide.Selectors.byText;
@@ -9,6 +10,10 @@ import static com.codeborne.selenide.Selenide.open;
 public class RegistrationPageDemoQA {
     public RegistrationPageDemoQA openPage(String page){
         open(page);
+        try {
+            executeJavaScript("$('#Ad.Plus-970x250-1').remove()");
+            executeJavaScript("$('#fixedban').remove()");
+        }catch (NullPointerException ignored){}
         return this;
     }
     public RegistrationPageDemoQA setFirstName(String value){
@@ -50,15 +55,18 @@ public class RegistrationPageDemoQA {
         return this;
     }
     public RegistrationPageDemoQA setCurrentAddress(String value){
+        actions().scrollToElement($("#currentAddress")).perform();
         $("#currentAddress").setValue(value);
         return this;
     }
     public RegistrationPageDemoQA setState(String value){
+        actions().scrollToElement($("#state")).perform();
         $("#state").click();
         $("#stateCity-wrapper").$(byText(value)).click();
         return this;
     }
     public RegistrationPageDemoQA setCity(String value){
+        actions().moveToElement($("#city")).perform();
         $("#city").click();
         $("#stateCity-wrapper").$(byText(value)).click();
         return this;
