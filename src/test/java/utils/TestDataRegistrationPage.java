@@ -34,7 +34,7 @@ public class TestDataRegistrationPage {
     private String getCityByState(String state){
         switch (state){
             case "NCR":
-                return faker.options().option("Delhi","Gurgaon Pradesh","Noida");
+                return faker.options().option("Delhi","Gurgaon","Noida");
             case "Uttar Pradesh":
                 return faker.options().option("Agra","Lucknow","Merrut");
             case "Haryana":
