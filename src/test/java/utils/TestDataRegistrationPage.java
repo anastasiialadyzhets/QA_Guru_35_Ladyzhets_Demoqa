@@ -26,7 +26,7 @@ public class TestDataRegistrationPage {
     public String userCity =getCityByState(userState);
 
     private String[] getRandomBirthDate(){
-        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy MMMM dd");
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy MMMM dd").withLocale(Locale.ENGLISH);
         Instant instant = faker.date().birthday().toInstant();
         LocalDate localDate = instant.atZone(ZoneId.systemDefault()).toLocalDate();
         return dateTimeFormatter.format(localDate).split(" ");
