@@ -13,8 +13,6 @@ dependencies {
     testImplementation("com.codeborne:selenide:6.19.1",
     "org.junit.jupiter:junit-jupiter:5.9.3",
     "com.github.javafaker:javafaker:1.0.2")
-    testImplementation 'org.jetbrains:annotations:24.0.0'
-
 }
 
 tasks.test {
