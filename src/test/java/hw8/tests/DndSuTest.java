@@ -31,22 +31,22 @@ public class DndSuTest {
         dndSuComponent.checkSearchToolbarVisible();
     }
     @EnumSource(AlpabetRu.class)
-    static Stream<Arguments> SpellsGroupedByAlphabetTest() {
+    static Stream<Arguments> spellsGroupedByAlphabetData() {
         return Stream.of(
                 Arguments.of(
-                        AlpabetRu.l1,
+                        AlpabetRu.L1,
                         List.of("Адское возмездие", "Антипатия/симпатия", "Аура живучести", "Аура жизни", "Аура очищения", "Аура святости", "Ашардалонова поступь")
                 ),
                 Arguments.of(
-                        AlpabetRu.l2,
+                        AlpabetRu.L2,
                         List.of("Безмолвный образ", "Бесследное передвижение", "Благословение", "Благословение удачи", "Божественное благоволение", "Божественное оружие", "Божественное слово"
                                 ,"Болезненное сияние","Брешь в реальности","Брызги кислоты","Быстрые друзья","Быстрый гонец Гальдера","Быстрый колчан")
                 )
         );
     }
-    @MethodSource
+    @MethodSource("spellsGroupedByAlphabetData")
     @ParameterizedTest(name = "Блок {0} содержит заданный список заклинаний в алфавитном порядке")
-    void SpellsGroupedByAlphabetTest(AlpabetRu alpabetLetter, List<String> spellList) {
+    void spellsGroupedByAlphabetTest(AlpabetRu alpabetLetter, List<String> spellList) {
         DndSuPage dndSuPage= new DndSuPage();
         dndSuPage.openPage("/spells");
 
@@ -74,7 +74,7 @@ public class DndSuTest {
             "Чародей , Sorcerer",
     })
     @ParameterizedTest(name = "Для русскоязычного наименования класса {0} отображается оригинал на англ: {1}")
-    void ClassListCheckEnNameTest(String nameRu, String nameEn) {
+    void classListCheckEnNameTest(String nameRu, String nameEn) {
         DndSuPage dndSuPage= new DndSuPage();
         dndSuPage.openPage("/class");
 
