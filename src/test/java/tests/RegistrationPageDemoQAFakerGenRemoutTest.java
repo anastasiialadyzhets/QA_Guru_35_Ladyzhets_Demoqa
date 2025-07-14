@@ -2,13 +2,18 @@ package tests;
 
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.logevents.SelenideLogger;
+import helpers.Attach;
 import io.qameta.allure.selenide.AllureSelenide;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.remote.DesiredCapabilities;
 import pages.RegistrationPageDemoQA;
 import pages.components.SubmitRegistrationTableComponent;
 import utils.TestDataRegistrationPage;
+
+import java.util.Map;
 
 public class RegistrationPageDemoQAFakerGenRemoutTest {
     @BeforeAll
@@ -16,6 +21,20 @@ public class RegistrationPageDemoQAFakerGenRemoutTest {
         Configuration.pageLoadStrategy= "eager";
         Configuration.baseUrl="https://demoqa.com";
         Configuration.browserSize="1920x1080";
+
+        DesiredCapabilities capabilities = new DesiredCapabilities();
+        capabilities.setCapability("selenoid:options", Map.<String, Object>of(
+                "enableVNC", true,
+                "enableVideo", true
+        ));
+        Configuration.browserCapabilities = capabilities;
+    }
+    @AfterEach
+    void addAttachments() {
+        Attach.screenshotAs("Last screenshot");
+        Attach.pageSource();
+        Attach.browserConsoleLogs();
+        Attach.addVideo();
     }
     @Test
     @Tag("demoqa")
@@ -48,7 +67,7 @@ public class RegistrationPageDemoQAFakerGenRemoutTest {
                 .checkTableResult("Student Email", testData.userEmail)
                 .checkTableResult("Gender",testData.userGender)
                 .checkTableResult("Mobile",testData.userPhone)
-                .checkTableResult("Date of Birth",testData.dateBirth[2]+" "+testData.dateBirth[1]+","+testData.dateBirth[0])//"13 February,2000")
+                .checkTableResult("Date of Birth",testData.dateBirth[2]+" "+testData.dateBirth[1]+","+testData.dateBirth[0])
                 .checkTableResult("Subjects", testData.subjects)
                 .checkTableResult("Hobbies", testData.hobbies)
                 .checkTableResult("Picture", testData.attachedfile)
@@ -61,6 +80,7 @@ public class RegistrationPageDemoQAFakerGenRemoutTest {
     @Tag("demoqa-positive")
     void successfulSearchTestRequiredFieldsOnly() {
         SelenideLogger.addListener("allure", new AllureSelenide());
+
         TestDataRegistrationPage testData = new TestDataRegistrationPage();
         RegistrationPageDemoQA registrationPage = new RegistrationPageDemoQA();
         SubmitRegistrationTableComponent submitPage = new SubmitRegistrationTableComponent();
@@ -90,6 +110,7 @@ public class RegistrationPageDemoQAFakerGenRemoutTest {
     @Tag("demoqa-negative")
     void unsuccessfulSearchRequiredFieldsEmpty() {
         SelenideLogger.addListener("allure", new AllureSelenide());
+
         TestDataRegistrationPage testData = new TestDataRegistrationPage();
         RegistrationPageDemoQA registrationPage = new RegistrationPageDemoQA();
         SubmitRegistrationTableComponent submitPage = new SubmitRegistrationTableComponent();
