@@ -1,6 +1,5 @@
 package pages;
 
-import org.openqa.selenium.interactions.Actions;
 import pages.components.*;
 
 import static com.codeborne.selenide.Selectors.byText;
@@ -71,6 +70,6 @@ public class RegistrationPageDemoQA {
         return this;
     }
     public void submitRegistration() {
-        $("#submit").click();
+        $("#submit").scrollIntoView(true).click();
     }
 }
